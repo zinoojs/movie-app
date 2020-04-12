@@ -11,7 +11,7 @@ module.exports = {
       }),
   },
   variants: {
-    spinner: ['responsive'],
+   
   },
   plugins: [
         require('tailwindcss-spinner')(),

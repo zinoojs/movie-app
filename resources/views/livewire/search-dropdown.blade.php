@@ -3,12 +3,18 @@
         <input 
         wire:model.debounce.500ms="search" 
         @focus="open=true"
+        x-ref="search"
+        @keydown.window="
+            if(event.keyCode === 191)
+            event.preventDefault()
+            $refs.search.focus()
+        "
         @keydown="open=true"
         @keydown.escape.window="open=false"
         @keydown.shift.tab="open=false"
         type="text" class="bg-gray-800 text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" placeholder="Search">
  
-    <div class="spinner"></div>
+    <div wire:loading class="spinner .absolute top-0 right-0 mt-3 mr-4"></div>
     @if (strlen($search) >= 2)
         <div 
         class="z-50 absolute rounded bg-gray-800 mt-4 w-64 text-sm"
